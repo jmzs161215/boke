@@ -1,0 +1,47 @@
+{% extends "release.html" %}
+{% block body %}
+<form action="/xiugai" method="post" enctype="multipart/form-data">
+				<br>
+				<p>
+					<input class="comment_input" id="author" maxlength="50" name="author" required="required" size="25" tabindex="1"
+					 type="text" value="{{params.topic.title}}">
+					<label for="author">文章标题</label>
+				</p>
+				<br>
+				<p class="classification">
+					<!-- <input name="list" type="radio" value="1">个人博客
+					<input name="list" type="radio" value="2">公开博客
+					<input name="list" type="radio" value="3">其他博客 -->
+          {% for blogType in params.blogTypes %}
+          <input type="radio" name="list" value="{{blogType.id}}">{{blogType.type_name}}
+          {% endfor %}
+				</p>
+        <!-- 显示博客的分类 -->
+				<p style="margin:15px 0 0 12px;">
+          <select name="category">
+            {% for category in params.categories %}
+            <option value="{{category.id}}">
+              {{category.cate_name}}
+            </option>
+            {% endfor %}
+          </select>
+          文章类别
+        </p>
+        <!-- 上传图片 -->
+        <p style="margin:15px 0 0 12px; ">
+          <input type="file" name="picture" style="margin-right:12px;border:2px solid #e3e5e4;padding:2px;background-color:#f9f9f9;">
+          图片
+        </p>
+
+				<br>
+
+				<textarea name="content" cols="80" rows="10" style="margin-left: 12px;margin-right: 12px">{{params.topic.content}}</textarea>
+				<br>
+				<p>
+					<input id="id_article" name="article" type="hidden" value="1">
+                    <input type="hidden" value="{{params.tid}}" name="tid">
+					<input name="submit" type="submit" id="submit" tabindex="5" value="提交" class="button" />
+				</p>
+				<br>
+			</form>
+{% endblock %}

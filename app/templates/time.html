@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+
+{% block scr %}
+<script src="/static/js/modernizr.js"></script>
+{% endblock %}
+
+{% block container %}
+  <div class="pagebg timer"> </div>
+  <div class="container">
+    <h1 class="t_nav"><span>时光飞逝，机会就在我们眼前，何时找到了灵感，就要把握机遇，我们需要智慧和勇气去把握机会。</span>
+      <p class="n1">时间轴</p>
+    </h1>
+    <div class="timebox">
+      <ul id="list">
+        {% for topic in params.topics %}
+        <li><span>{{topic.pub_date}}</span><a href="/info?topic_id={{topic.id}}" title="{{topic.title}}">{{topic.content|truncate(40,true)}}</a></li>
+        {% endfor %}
+      </ul>
+      <ul id="list2">
+      </ul>
+      <script src="/static/js/page2.js"></script>
+    </div>
+  </div>
+
+  <footer id="footer">
+    <p>Design by <a href=# target="_blank">皮爷の博客</a> <a href="#">备XXXXXXXXX号-1</a></p>
+  </footer>
+
+  <a href="#" class="cd-top">Top</a>
+{% endblock %}
